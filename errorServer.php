@@ -11,7 +11,7 @@ function errorWrite($error)
 
 	//manual file creation, know works
 	//fopen creates/opens file, file path needs to be configured for host system
-        $fp = fopen('/home/test1/git/errors/'$date.'-error.txt', 'w');
+        $fp = fopen('/home/test1/git/errors/'.$date.'-error.txt', 'w');
         fwrite($fp, $error);
         fclose($fp);
 
