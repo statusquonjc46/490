@@ -3,13 +3,17 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-$client = new rabbitMQClient("errorRabbitMQ.ini","testServer");
+//$client = new rabbitMQClient("errorRabbitMQ.ini","testServer");
 
-class errorCatch
+class errorWrite
 {
+	public $request = array();
+	public $response;
+	public $payload;
+
 	function error_input($errorMessage)
 	{
-		$request = array();
+		$client = new rabbitMQClient("errorRabbitMQ.ini","testServer");
 		$request['type'] = "error";
 		$request['error'] = $errorMessage;
 		$response = $client->send_request($request);

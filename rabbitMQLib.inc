@@ -1,6 +1,10 @@
 <?php
 
 require_once('get_host_info.inc');
+require_once('errorWrite.php');
+
+
+
 
 class rabbitMQServer
 {
@@ -129,6 +133,8 @@ class rabbitMQServer
 		}
 		catch (Exception $e)
 		{
+			$error = new errorWrite;
+			$error->error_input("Failed to start request processor: ".$e);
 			trigger_error("Failed to start request processor: ".$e,E_USER_ERROR); 
 		}
 	}
@@ -229,6 +235,8 @@ class rabbitMQClient
 		}
 		catch(Exception $e)
 		{
+			$error = new errorWrite;
+			$error->error_input("failed to send message to exchange: ". $e->getMessage()."\n");
 			die("failed to send message to exchange: ". $e->getMessage()."\n");
 		}
 	}
@@ -264,6 +272,8 @@ class rabbitMQClient
 		}
 		catch(Exception $e)
 		{
+			$error = new errorWrite;
+			$error->error_input("failed to send message to exchange: ". $e->getMessage()."\n");
 			die("failed to send message to exchange: ". $e->getMessage()."\n");
 		}
 	}
