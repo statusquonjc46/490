@@ -10,19 +10,6 @@ header('Location: home.html');
 
 ?>
 
-<?php
-
-// Inialize session
-session_start();
-
-// Check, if username session is NOT set then this page will jump to login page
-if (!isset($_SESSION['user'])) {
-header('Location: home.html');
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <title>Website</title>
@@ -42,13 +29,13 @@ h1,h2,h3,h4,h5,h6 {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-    <a href="home.html" class="w3-bar-item w3-button">IT 490</a>
+    <a href="home.html" class="w3-bar-item w3-button">ARS</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="about.html" class="w3-bar-item w3-button">About</a>
-      <a href="pricing.html" class="w3-bar-item w3-button">Pricing</a>
-      <a href="contact.html" class="w3-bar-item w3-button">Contact Us</a>
-        <a href="logout.php" class="w3-bar-item w3-button"> Logout</a>
+      <a href="service.html" class="w3-bar-item w3-button">Service</a>
+      <a href="home.html" class="w3-bar-item w3-button">Contact Us</a>
+        <a href="index2.html" class="w3-bar-item w3-button"> Logout</a>
         
     </div>
   </div>
@@ -99,5 +86,3 @@ h1,h2,h3,h4,h5,h6 {
     </div>
 </body>
 </html>
-
-
