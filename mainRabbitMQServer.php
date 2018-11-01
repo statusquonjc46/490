@@ -36,7 +36,9 @@ function doLogin($username,$password)
 function doRegister($username, $password)
 {
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-	
+	global $db;
+	$d="insert into users values('$username','$password')";
+	($t = mysqli_query($db, $d)) or die (mysqli_error($db));
 }
 
 function apiCall($make, $model, $year){
@@ -63,7 +65,7 @@ function requestProcessor($request)
 	    return doValidate($request['sessionId']);
     case "register":
 	    return doRegister($request['username'],$request['password']);
-    case "api"
+    case "api":
 	    return apiCall($request['make'],$request['model'],$request['year']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
