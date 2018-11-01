@@ -45,6 +45,8 @@ function apiCall($make, $model, $year){
 	$apiCode = array_values($arrayCode);
 	var_dump($apiCode[2][0]["Make"]);
 
+}
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
