@@ -35,7 +35,10 @@ function doLogin($username,$password)
 
 function doRegister($username, $password)
 {
+	global $db;
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+	$d="insert into user values('$username','$password')";
+        ($t = mysqli_query($db, $d)) or die (mysqli_error($db));
 	
 }
 
