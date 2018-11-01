@@ -37,9 +37,17 @@ function doRegister($username, $password)
 {
 	global $sqlcon;
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-	$d="insert into users(username, password) values('$username','$password')";
-        ($t = mysqli_query($sqlcon, $d)) or die (mysqli_error($sqlcon));
-	
+	//$s="select username from users";
+	$s= "select ussername from users where username = '$username'";
+	$check = strcmp(strtolower($s), strtolower($username));
+	echo $check;
+	if($check==0){
+	#	echo ("Sorry this username has already been taken");
+	}
+	else{
+		$d="insert into users(username, password) values('$username','$password')";
+	        ($t = mysqli_query($sqlcon, $d)) or die (mysqli_error($sqlcon));
+	}
 }
 
 function apiCall($make, $model, $year){
