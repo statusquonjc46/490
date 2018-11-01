@@ -3,8 +3,6 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-//$client = new rabbitMQClient("errorRabbitMQ.ini","testServer");
-
 class errorWrite
 {
 	public $request = array();

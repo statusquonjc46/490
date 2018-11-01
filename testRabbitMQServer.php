@@ -35,7 +35,8 @@ function doLogin($username,$password)
 
 function doRegister($username, $password)
 {
-
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+	
 }
 
 function requestProcessor($request)
