@@ -1,3 +1,10 @@
+<?php
+
+// Inialize session
+session_start();
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +31,7 @@ h1,h2,h3,h4,h5,h6 {
       <a href="about.html" class="w3-bar-item w3-button">About</a>
       <a href="service.html" class="w3-bar-item w3-button">Service</a>
       <a href="home.html" class="w3-bar-item w3-button">Contact Us</a>
+         <a href="index2.html" class="w3-bar-item w3-button"> Log In</a>
         <a href="index2.html" class="w3-bar-item w3-button"> Logout</a>
         
     </div>
@@ -73,5 +81,12 @@ h1,h2,h3,h4,h5,h6 {
 </footer>
     </div>
     </div>
+    
+<?php 
+$_SESSION['user'] = "kp378";
+echo $SESSION['user'];
+
+?>
+
 </body>
 </html>
