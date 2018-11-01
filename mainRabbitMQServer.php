@@ -39,6 +39,12 @@ function doRegister($username, $password)
 	
 }
 
+function apiCall($make, $model, $year){
+	$results = shell_exec('GET https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/'.$year.'/make/'.$make.'/model/'.$model.'?format=json');
+	$arrayCode = json_decode($results, true);
+	$apiCode = array_values($arrayCode);
+	var_dump($apiCode[2][0]["Make"]);
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -55,6 +61,8 @@ function requestProcessor($request)
 	    return doValidate($request['sessionId']);
     case "register":
 	    return doRegister($request['username'],$request['password']);
+    case "api"
+	    return apiCall($request['make'],$request['model'],$request['year']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
