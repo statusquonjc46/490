@@ -33,6 +33,11 @@ function doLogin($username,$password)
     //return false if not valid
 }
 
+function doRegister($username, $password)
+{
+
+}
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -44,9 +49,11 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "login":
-      return doLogin($request['username'],$request['password']);
+     	    return doLogin($request['username'],$request['password']);
     case "validate_session":
-      return doValidate($request['sessionId']);
+	    return doValidate($request['sessionId']);
+    case "register":
+	    return doRegister($request['username'],$request['password']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
