@@ -1,3 +1,16 @@
+<?php
+
+// Inialize session
+session_start();
+
+// Check, if username session is NOT set then this page will jump to login page
+if (!isset($_SESSION['user'])) {
+header('Location: home.html');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <title>Website</title>
@@ -23,6 +36,8 @@ h1,h2,h3,h4,h5,h6 {
       <a href="about.html" class="w3-bar-item w3-button">About</a>
       <a href="pricing.html" class="w3-bar-item w3-button">Pricing</a>
       <a href="contact.html" class="w3-bar-item w3-button">Contact Us</a>
+        <a href="logout.php" class="w3-bar-item w3-button"> Logout</a>
+        
     </div>
   </div>
 </div>
@@ -79,3 +94,4 @@ h1,h2,h3,h4,h5,h6 {
     </div>
 </body>
 </html>
+
