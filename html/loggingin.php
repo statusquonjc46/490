@@ -2,7 +2,7 @@
 require_once('/home/njc46/490project/rabbitmqphp_example/path.inc');
 require_once('/home/njc46/490project/rabbitmqphp_example/get_host_info.inc');
 require_once('/home/njc46/490project/rabbitmqphp_example/rabbitMQLib.inc');
-
+session_start();
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))
 {
@@ -28,6 +28,8 @@ echo "\n\n";
 
 echo $argv[0]." END".PHP_EOL;
 
+?>
+<!DOCTYPE>
 <script type = "text/javascript">
         function countDown(secs, elem){
                 var element = document.getElementById(elem);
@@ -40,7 +42,11 @@ echo $argv[0]." END".PHP_EOL;
                 var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
         }
 </script>
+<div style="margin:0 auto;text-align:center;" class="container" id="Content">
+<h3>You have Successfully Signed In!</h3><br/><p id='status' style="font-size:12px;"></p></div>
+<script type="text/javascript">countDown(5,"status");</script>
+</body>
+</html>
 
-?>
 
 
