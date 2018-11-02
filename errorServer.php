@@ -7,8 +7,8 @@ require_once('rabbitMQLib.inc');
 function errorWrite($error)
 {
 	//generate date and time for text name
-	$date = (new \DateTime())->format('Y-m-d H:i:s');
-
+	#$date = (new \DateTime())->format('Y-m-d H:i:s');
+	$date = (new \DateTime())->format('Y-m-d');
 	//manual file creation, know works
 	//fopen creates/opens file, file path needs to be configured for host system
         $fp = fopen('/home/test1/git/errors/'.$date.'-error.txt', 'w');

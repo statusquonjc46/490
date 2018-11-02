@@ -34,7 +34,8 @@ public function validateLogin($username,$password)
 		}
 		echo "passwords did not match for $username".PHP_EOL;
 	}
-	return 0;//no users matched username
+	echo "no username exists";
+	return  0;//no users matched username
 }
 }
 ?>

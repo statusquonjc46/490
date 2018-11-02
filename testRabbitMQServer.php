@@ -9,25 +9,6 @@ function doLogin($username,$password)
 {
     // lookup username in databas
 	// check password
-
-    $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-    $sqlstatement = "select password from users where username = '$username'";
-    $result = mysqli_query($sqlcon, $sqlstatement);
-    $rows = mysqli_num_rows($result);
-    $checkArray = mysqli_fetch_assoc($result);
-    $sqlPass = $checkArray["password"];
-    
-    if ($count == 1){
-	    if(password_verify($password,$sqlPass)){
-		    $response = "0";
-	    	    return $response;
-	    }
-	    else{
-		    $response = "1";
-		    return $response;
-	    }
-
-    }
     $login = new loginDB();
     return $login->validateLogin($username,$password);
     //return false if not valid
