@@ -33,7 +33,7 @@ function apiCall($make, $model, $year){
 	$results = shell_exec('GET https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/'.$year.'/make/'.$make.'/model/'.$model.'?format=json');
 	$arrayCode = json_decode($results, true);
 	$apiCode = array_values($arrayCode);
-	var_dump($apiCode[2][0]["Make"]);
+	var_dump($apiCode[2][0]);
 
 }
 
