@@ -1,8 +1,10 @@
+<!DOCTYPE html>
+<html>
 <?php
 require_once('/home/njc46/490project/rabbitmqphp_example/path.inc');
 require_once('/home/njc46/490project/rabbitmqphp_example/get_host_info.inc');
 require_once('/home/njc46/490project/rabbitmqphp_example/rabbitMQLib.inc');
-session_start();
+
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))
 {
@@ -29,7 +31,7 @@ echo "\n\n";
 echo $argv[0]." END".PHP_EOL;
 
 ?>
-<!DOCTYPE>
+
 <script type = "text/javascript">
         function countDown(secs, elem){
                 var element = document.getElementById(elem);
