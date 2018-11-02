@@ -35,13 +35,10 @@ function doLogin($username,$password)
 
 function doRegister($username, $password)
 {
-	global $sqlcon;
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-	//$s="select username from users";
 	$query = "select username from users where username = '$username'";
 	$result = mysqli_query($sqlcon, $query);
 	$check = mysqli_num_rows($result);
-	echo $check;
 	if($check!=0){
 		echo ("Sorry this username has already been taken");
 	}
