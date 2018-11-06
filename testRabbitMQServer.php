@@ -22,10 +22,12 @@ function doRegister($username, $password)
 	$check = mysqli_num_rows($result);
 	if($check!=0){
 		echo ("Sorry this username has already been taken");
+		return 0;
 	}
 	else{
 		$d="insert into users(username, password) values('$username','$password')";
-	        ($t = mysqli_query($sqlcon, $d)) or die (mysqli_error($sqlcon));
+		($t = mysqli_query($sqlcon, $d)) or die (mysqli_error($sqlcon));
+		return 1;
 	}
 }
 
