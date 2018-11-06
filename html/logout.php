@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-session_unset();
-session_destroy();
+
 ?>
 
 <!DOCTYPE>
@@ -22,5 +21,9 @@ session_destroy();
 <div style="margin:0 auto;text-align:center;" class="container" id="Content">
 <h3>You have Successfully logged out!</h3><br/><p id='status' style="font-size:12px;"></p></div>
 <script type="text/javascript">countDown(5,"status");</script>
+<?php
+session_unset();
+session_destroy();
+?>
 </body>
 </html>
