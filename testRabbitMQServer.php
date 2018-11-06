@@ -34,6 +34,20 @@ function apiCall($make, $model, $year){
 	$arrayCode = json_decode($results, true);
 	$apiCode = array_values($arrayCode);
 	var_dump($apiCode[2][0]);
+	$qMake = $apiCode[2][0]["Make"];
+	$qModel = $apiCode[2][0]["Model"];
+	$qManufac = $apiCode[2][0]["Manufacturer"];
+	$qCampNum = $apiCode[2][0]["NHTSACampaignNumber"];
+	$qDate = $apiCode[2][0]["ReportReceivedDate"];
+	$qSum = $apiCode[2][0]["Summary"];
+	$qComp = $apiCode[2][0]["Component"];
+	$qYear = $apiCode[2][0]["ModelYear"];
+	$qNotes = $apiCode[2][0]["Notes"];
+	$username = 'nick';
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+	$storeData = "insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')";
+	$result = mysqli_query($sqlcon, $storeData);
+	echo "$result";
 
 }
 

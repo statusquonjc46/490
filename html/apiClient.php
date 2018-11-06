@@ -26,6 +26,6 @@ $payload = json_encode($response);
 echo $payload;
 echo "\n\n";
 
-echo $argv[0]." END".PHP_EOL;
+echo $argv[1]." END".PHP_EOL;
 ?>
 
