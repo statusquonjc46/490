@@ -28,5 +28,16 @@ echo $payload;
 echo "\n\n";
 
 echo $argv[0]." END".PHP_EOL;
+
+if($payload==1)
+{
+        header('Location: /index2.html');
+        exit();
+}
+else
+{
+        header('Location: /register.html');
+        exit();
+}
 ?>
 
