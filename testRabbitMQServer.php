@@ -46,10 +46,22 @@ function apiCall($make, $model, $year){
 	$qYear = $apiCode[2][0]["ModelYear"];
 	$qNotes = $apiCode[2][0]["Notes"];
 	$username = 'nick';
+	$recallExist = "select username, make, model, modelyear from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-	$storeData = "insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')";
-	$result = mysqli_query($sqlcon, $storeData);
-	echo "$result";
+	$existQ = mysqli_query($sqlcon, $recallExist);
+	$check = mysqli_num_rows($existQ);
+	if ($check != 0)
+	{
+		echo ("Recall Exists already.");
+		return 0;
+	}
+	else
+	{
+		$storeData = "insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')";
+		$result = mysqli_query($sqlcon, $storeData);
+		return 1;
+		echo "$result";//echos 1 or 0, 1 being submit success, 0 being a failure.
+	}
 
 }
 
