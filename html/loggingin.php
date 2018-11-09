@@ -32,12 +32,12 @@ echo $argv[0]." END".PHP_EOL;
 #$check = $argv[0];
 if($payload==1)
 {
-	header('Location: /home.html');
+	header('Location: /home.php');
 	exit();
 }
 else
 {
-	header('Location: /index2.html');
+	header('Location: /index2.php');
 	exit();
 }
 ?>
