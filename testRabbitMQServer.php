@@ -54,16 +54,16 @@ function apiCall($make, $model, $year){
 	{
 		echo ("Recall Exists already.");
 		return 0;
-		$output.="<br>Username: $username";
-		$output.="<br>Make: $qMake";
-		$output.="<br>Model: $qModel";
-		$output.="<br>Manufacturer: $qManufac";
-		$output.="<br>NHTSA Campaign Number: $qCampNum";
-		$output.="<br>Report Received Data: $qDate";
-		$output.="<br>Summary: $qSum";
-		$output.="<br>Component: $qComp";
-		$output.="<br>Model Year: $qYear";
-		$output.="<br>Notes: $qNotes";
+		echo "<br>Username: $username";
+		echo "<br>Make: $qMake";
+		echo "<br>Model: $qModel";
+		echo "<br>Manufacturer: $qManufac";
+		echo "<br>NHTSA Campaign Number: $qCampNum";
+		echo "<br>Report Received Data: $qDate";
+		echo "<br>Summary: $qSum";
+		echo "<br>Component: $qComp";
+		echo "<br>Model Year: $qYear";
+		echo "<br>Notes: $qNotes";
 
 	}
 	else
