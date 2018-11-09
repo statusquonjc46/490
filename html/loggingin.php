@@ -1,5 +1,6 @@
 <?php
 session_start();
+$sid = session_id();
 require_once('/home/test1/git/490/path.inc');
 require_once('/home/test1/git/490/get_host_info.inc');
 require_once('/home/test1/git/490/rabbitMQLib.inc');
