@@ -53,16 +53,6 @@ function apiCall($make, $model, $year){
 	if ($check != 0)
 	{
 		echo ("Recall Exists already.");
-		echo ("<br>Username: $username");
-		echo ("<br>Make: $qMake");
-		echo ("<br>Model: $qModel");
-		echo ("<br>Manufacturer: $qManufac");
-		echo ("<br>NHTSA Campaign Number: $qCampNum");
-		echo ("<br>Report Received Data: $qDate");
-		echo ("<br>Summary: $qSum");
-		echo ("<br>Component: $qComp");
-		echo ("<br>Model Year: $qYear");
-		echo ("<br>Notes: $qNotes");
 		return 0;
 
 	}
@@ -75,7 +65,21 @@ function apiCall($make, $model, $year){
 	}
 
 }
-
+function show($make, $model, $year){
+        $recallshow= "select username, make, model, modelyear from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
+        $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+        $existQ = mysqli_query($sqlcon, $recallshow);
+                echo ("<br>Username: $username");
+                echo ("<br>Make: $qMake");
+                echo ("<br>Model: $qModel");
+                echo ("<br>Manufacturer: $qManufac");
+                echo ("<br>NHTSA Campaign Number: $qCampNum");
+                echo ("<br>Report Received Data: $qDate");
+                echo ("<br>Summary: $qSum");
+                echo ("<br>Component: $qComp");
+                echo ("<br>Model Year: $qYear");
+                echo ("<br>Notes: $qNotes");
+}
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
