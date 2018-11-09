@@ -66,7 +66,7 @@ function apiCall($make, $model, $year){
 
 }
 function show($make, $model, $year){
-        $recallshow= "select username, make, model, modelyear from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
+        $recallshow= "select * from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
         $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
         $existQ = mysqli_query($sqlcon, $recallshow);
                 echo ("<br>Username: $username");
