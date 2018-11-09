@@ -53,7 +53,6 @@ function apiCall($make, $model, $year){
 	if ($check != 0)
 	{
 		echo ("Recall Exists already.");
-		return 0;
 		echo "<br>Username: $username";
 		echo "<br>Make: $qMake";
 		echo "<br>Model: $qModel";
@@ -64,6 +63,7 @@ function apiCall($make, $model, $year){
 		echo "<br>Component: $qComp";
 		echo "<br>Model Year: $qYear";
 		echo "<br>Notes: $qNotes";
+		return 0;
 
 	}
 	else
