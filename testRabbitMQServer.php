@@ -33,6 +33,26 @@ function doRegister($username, $password)
 
 function apiCall($make, $model, $year){
 	$results = shell_exec('GET https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/'.$year.'/make/'.$make.'/model/'.$model.'?format=json');
+	
+	$apiCode = json_decode($results, true);
+	
+	$c = count($apiCode['Results'], 0); //Checks the to see how many arrays exist
+	var_dump($apiCode);
+	for($x = 0; $x < $c; $x++)
+	{
+        	$qMake = $apiCode['Results'][$x]["Make"];
+        	$qModel = $apiCode['Results'][$x]["Model"];
+        	$qManufac = $apiCode['Results'][$x]["Manufacturer"];
+        	$qCampNum = $apiCode['Results'][$x]["NHTSACampaignNumber"];
+        	$qDate = $apiCode['Results'][$x]["ReportReceivedDate"];
+	        $qSum = $apiCode['Results'][$x]["Summary"];
+        	$qComp = $apiCode['Results'][$x]["Component"];
+        	$qYear = $apiCode['Results'][$x]["ModelYear"];
+        	$qNotes = $apiCode['Results'][$x]["Notes"];
+	}
+
+	/*
+	
 	$arrayCode = json_decode($results, true);
 	$apiCode = array_values($arrayCode);
 	var_dump($apiCode[2][0]);
@@ -45,6 +65,7 @@ function apiCall($make, $model, $year){
 	$qComp = $apiCode[2][0]["Component"];
 	$qYear = $apiCode[2][0]["ModelYear"];
 	$qNotes = $apiCode[2][0]["Notes"];
+	 */
 	$username = 'nick';
 	$recallExist = "select username, make, model, modelyear from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
@@ -65,6 +86,7 @@ function apiCall($make, $model, $year){
 	}
 
 }
+
 function show($make, $model, $year){
         $recallshow= "select * from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
         $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
@@ -80,6 +102,7 @@ function show($make, $model, $year){
                 echo ("<br>Model Year: $qYear");
                 echo ("<br>Notes: $qNotes");
 }
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
