@@ -40,7 +40,6 @@ function apiCall($make, $model, $year){
 	var_dump($apiCode);
 	
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-
 	for($x = 0; $x < $c; $x++)
 	{
         	$qMake = $apiCode['Results'][$x]["Make"];
@@ -60,18 +59,24 @@ function apiCall($make, $model, $year){
         	if ($check != 0)
         	{
                 	echo ("Recall Exists already.");
-                	return 0;
+                	continue;	
 
         	}
         	else
-        	{
-                	$storeData = "insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')";
-                	$result = mysqli_query($sqlcon, $storeData);
-                	return 1;
-                	echo "$result";//echos 1 or 0, 1 being submit success, 0 being a failure.
+		{
+			
+                	$storeData = ("insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')");
+			($r = mysqli_query($sqlcon, $storeData)) or die(mysqli_error($sqlcon));
+			continue;	
         	}
 	}
 
+	$recallInfo = ("select * from recallTable where username = '$username'");
+	$result = mysqli_query($sqlcon, $recallInfo);
+	var_dump($result);
+	$rArray = mysqli_fetch_assoc($result);
+	var_dump($rArray);
+	return $rArray;
 	/*
 	
 	$arrayCode = json_decode($results, true);
@@ -90,7 +95,7 @@ function apiCall($make, $model, $year){
 	
 
 }
-
+/*
 function show($make, $model, $year){
         $recallshow= "select * from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
         $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
@@ -106,7 +111,7 @@ function show($make, $model, $year){
                 echo ("<br>Model Year: $qYear");
                 echo ("<br>Notes: $qNotes");
 }
-
+*/
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
