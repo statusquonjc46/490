@@ -37,7 +37,7 @@ if($payload==1)
 }
 else
 {
-	header('Location: /index2.php');
+	header('Location: /index.html');
 	exit();
 }
 ?>

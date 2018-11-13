@@ -11,7 +11,7 @@ session_start();
 		element.innerHTML = "To sign in, Please wait for <span style = 'color:red;'>"+secs+ "</span> Second(s)";
 		if (secs<1){
 			clearTimeout(timer);
-			window.location = 'index2.html';
+			window.location = 'index.html';
 		}
 		secs--;
 		var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
