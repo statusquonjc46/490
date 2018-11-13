@@ -1,0 +1,35 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<head> <meta charset = "utf-8" /> 
+      <link rel="stylesheet" type="text/css" href="style1.css">
+    </head>
+<body>
+<div class="header">
+    <h1>Login</h1>
+    </div>
+
+        <form id='login' action='/loggingin.php' method='get' accept-charset='UTF-8'>
+            <div class="input-group">
+        
+        <input type='hidden' name='submitted' id='submitted' value='1'/>
+            <label for='username'> Username:</label>
+	<input type='text' name='username' id='username' maxlength="50" placeholder="Enter Username" required autofocus autocomplete=on />
+            </div>
+        
+            <div class="input-group">
+        <label for='password'> Password:</label>
+        <input type='password' name='password' id='password' maxlength="50"placeholder="Enter Password" required autofocus autocomplete=on />
+             
+                
+        <input type='submit' name='submit' value='submit'/>
+            </div>
+        </form>
+
+	<form action='register2.html' method='post'>
+                <button type='submit'>Registration</button>
+        </form>
+</body>
+</html>
