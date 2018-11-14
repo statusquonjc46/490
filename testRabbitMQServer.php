@@ -32,6 +32,9 @@ function doRegister($username, $password)
 }
 
 function apiCall($make, $model, $year){
+
+	$rArray = array();
+
 	$results = shell_exec('GET https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/'.$year.'/make/'.$make.'/model/'.$model.'?format=json');
 	
 	$apiCode = json_decode($results, true);
@@ -58,7 +61,10 @@ function apiCall($make, $model, $year){
         	$check = mysqli_num_rows($existQ);
         	if ($check != 0)
         	{
-                	echo ("Recall Exists already.");
+			echo ("Recall Exists already.");
+			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
+			$result = mysqli_query($sqlcon, $recallInfo);
+			$rArray[$x] = mysqli_fetch_assoc($result);
                 	continue;	
 
         	}
@@ -67,15 +73,15 @@ function apiCall($make, $model, $year){
 			
                 	$storeData = ("insert into recallTable(username, make, model, manufacturer, nhtsanumber, date, summary, notes, modelyear) values('$username', '$qMake', '$qModel', '$qManufac', '$qCampNum', '$qDate', '$qSum', '$qNotes', '$qYear')");
 			($r = mysqli_query($sqlcon, $storeData)) or die(mysqli_error($sqlcon));
+			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
+                        $result = mysqli_query($sqlcon, $recallInfo);
+                        $rArray[$x] = mysqli_fetch_assoc($result);
 			continue;	
         	}
 	}
 
-	$recallInfo = ("select * from recallTable where username = '$username'");
-	$result = mysqli_query($sqlcon, $recallInfo);
-	#var_dump($result);
-	$rArray = mysqli_fetch_assoc($result);
-	#var_dump($rArray);
+	
+	var_dump($rArray);
 	return $rArray;
 }
 
