@@ -37,7 +37,7 @@ function apiCall($make, $model, $year){
 	$apiCode = json_decode($results, true);
 	
 	$c = count($apiCode['Results'], 0); //Checks the to see how many arrays exist
-	var_dump($apiCode);
+	#var_dump($apiCode);
 	
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
 	for($x = 0; $x < $c; $x++)
@@ -53,8 +53,8 @@ function apiCall($make, $model, $year){
 		$qNotes = $apiCode['Results'][$x]["Notes"];
 
 		$username = 'nick';
-        	$recallExist = "select username, make, model, modelyear from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
-        	$existQ = mysqli_query($sqlcon, $recallExist);
+		$recallExist = "select username, nhtsanumber from recallTable where username = '$username' and nhtsanumber = '$qCampNum'";
+		$existQ = mysqli_query($sqlcon, $recallExist);
         	$check = mysqli_num_rows($existQ);
         	if ($check != 0)
         	{
@@ -73,28 +73,12 @@ function apiCall($make, $model, $year){
 
 	$recallInfo = ("select * from recallTable where username = '$username'");
 	$result = mysqli_query($sqlcon, $recallInfo);
-	var_dump($result);
+	#var_dump($result);
 	$rArray = mysqli_fetch_assoc($result);
-	var_dump($rArray);
+	#var_dump($rArray);
 	return $rArray;
-	/*
-	
-	$arrayCode = json_decode($results, true);
-	$apiCode = array_values($arrayCode);
-	var_dump($apiCode[2][0]);
-	$qMake = $apiCode[2][0]["Make"];
-	$qModel = $apiCode[2][0]["Model"];
-	$qManufac = $apiCode[2][0]["Manufacturer"];
-	$qCampNum = $apiCode[2][0]["NHTSACampaignNumber"];
-	$qDate = $apiCode[2][0]["ReportReceivedDate"];
-	$qSum = $apiCode[2][0]["Summary"];
-	$qComp = $apiCode[2][0]["Component"];
-	$qYear = $apiCode[2][0]["ModelYear"];
-	$qNotes = $apiCode[2][0]["Notes"];
-	 */
-	
-
 }
+
 /*
 function show($make, $model, $year){
         $recallshow= "select * from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
@@ -111,7 +95,8 @@ function show($make, $model, $year){
                 echo ("<br>Model Year: $qYear");
                 echo ("<br>Notes: $qNotes");
 }
-*/
+ */
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
