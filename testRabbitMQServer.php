@@ -31,7 +31,7 @@ function doRegister($username, $password)
 	}
 }
 
-function apiCall($make, $model, $year){
+function apiCall($username, $make, $model, $year){
 
 	$rArray = array();
 
@@ -55,7 +55,7 @@ function apiCall($make, $model, $year){
         	$qYear = $apiCode['Results'][$x]["ModelYear"];
 		$qNotes = $apiCode['Results'][$x]["Notes"];
 
-		$username = 'nick';
+		
 		$recallExist = "select username, nhtsanumber from recallTable where username = '$username' and nhtsanumber = '$qCampNum'";
 		$existQ = mysqli_query($sqlcon, $recallExist);
         	$check = mysqli_num_rows($existQ);
@@ -85,23 +85,11 @@ function apiCall($make, $model, $year){
 	return $rArray;
 }
 
-/*
-function show($make, $model, $year){
-        $recallshow= "select * from recallTable where username = '$username' and make = '$qMake' and model = '$qModel' and modelyear = '$qYear'";
-        $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-        $existQ = mysqli_query($sqlcon, $recallshow);
-                echo ("<br>Username: $username");
-                echo ("<br>Make: $qMake");
-                echo ("<br>Model: $qModel");
-                echo ("<br>Manufacturer: $qManufac");
-                echo ("<br>NHTSA Campaign Number: $qCampNum");
-                echo ("<br>Report Received Data: $qDate");
-                echo ("<br>Summary: $qSum");
-                echo ("<br>Component: $qComp");
-                echo ("<br>Model Year: $qYear");
-                echo ("<br>Notes: $qNotes");
+function recallDelete($username, $qCampNum)
+{
+
 }
- */
+
 
 function requestProcessor($request)
 {
@@ -120,7 +108,9 @@ function requestProcessor($request)
     case "register":
 	    return doRegister($request['username'],$request['password']);
     case "api":
-	    return apiCall($request['make'],$request['model'],$request['year']);
+	    return apiCall($request['username'],$request['make'],$request['model'],$request['year']);
+    case "delete":
+	    return recallDelete($request['username'],$request['campnum']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }

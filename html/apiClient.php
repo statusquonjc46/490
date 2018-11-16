@@ -1,4 +1,8 @@
 <?php
+session_start();
+session_regenerate_id();
+$_SESSION['username'];
+
 require_once('/home/test1/git/490/path.inc');
 require_once('/home/test1/git/490/get_host_info.inc');
 require_once('/home/test1/git/490/rabbitMQLib.inc');
@@ -15,6 +19,7 @@ else
 
 $request = array();
 $request['type'] = "api";
+$request['username'] = $_SESSION["username"];
 $request['make'] = $_GET["make"];
 $request['model'] = $_GET["model"];
 $request['year'] = $_GET["year"];
