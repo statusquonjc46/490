@@ -87,6 +87,23 @@ function apiCall($username, $make, $model, $year){
 
 function recallDelete($username, $qCampNum)
 {
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+        $query = "delete from recallTable where username = '$username'and nhtsanumber = '$qCampNum'";
+	$delete = mysqli_query($sqlcon, $query);
+
+	$dQuery = "select username and nhtsanumber from recallTable where username = '$username' and nhtsanumber = '$qCampNum'";
+	$dSelect = mysqli_query($sqlcon, $dQuery);
+	$check = mysqli_num_rows($dSelect);
+	if($check != 0)
+	{
+		echo "Deletion failed";
+		return 0;
+	}
+	else
+	{
+		echo "Deletion succesful";
+		return 1;
+	}
 
 }
 
