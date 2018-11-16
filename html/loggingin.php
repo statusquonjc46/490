@@ -1,9 +1,9 @@
 <?php
-session_start();
-$sid = session_id();
-require_once('/home/test1/git/490/path.inc');
-require_once('/home/test1/git/490/get_host_info.inc');
-require_once('/home/test1/git/490/rabbitMQLib.inc');
+
+
+require_once('/home/njc46/490/490/path.inc');
+require_once('/home/njc46/490/490/get_host_info.inc');
+require_once('/home/njc46/490/490/rabbitMQLib.inc');
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))
@@ -14,7 +14,7 @@ else
 {
 	$msg = "test";
 }
-
+$uid = $_GET["username"];
 $request = array();
 $request['type'] = "login";
 $request['username'] = $_GET["username"];
@@ -32,12 +32,14 @@ echo $argv[0]." END".PHP_EOL;
 #$check = $argv[0];
 if($payload==1)
 {
+	session_start();
+	$_SESSION['username'] = $uid;
 	header('Location: /home.php');
 	exit();
 }
 else
 {
-	header('Location: /index.html');
+	header('Location: /index2.php');
 	exit();
 }
 ?>

@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-
+session_regenerate_id();
+$sid = session_id();
+echo $_SESSION['username'];
 ?>
 
 <html>

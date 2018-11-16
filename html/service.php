@@ -1,5 +1,7 @@
 <?php
 session_start();
+session_regenerate_id();
+echo $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html>
