@@ -93,8 +93,6 @@ form, .content {
         <li><a href="home.php"> HOME </a></li>
         <li class="active"><a href="service.php"> RECALL LOOKUP </a></li>
         <li><a href=""> ABOUT </a></li>
-        <li><a href="register2.html"> SIGN UP </a></li>
-        <li><a href="index.html"> LOG IN </a></li>
         <li><a href="logout2.php"> LOG OUT </a></li>
        
     </ul>    

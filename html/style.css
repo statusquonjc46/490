@@ -3,7 +3,14 @@
     margin: 0;
     padding: 0;
 }
-
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+background-color: #FAFAD2;
+padding: 15px;
+}
 body
 {
     font-family: monospace;

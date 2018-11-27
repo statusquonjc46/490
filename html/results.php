@@ -8,8 +8,22 @@ $sArray = $_SESSION['payload'];
 <!DOCTYPE html>
 <html>
 <head>
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
+<header>
+<div class="row">
+        <div class="logo">
+        <img src="logo.png"
+</div>
+<ul class="main-nav">
+        <li><a href=""> HOME </a></li>
+        <li class="active"><a href="service.php"> RECALL LOOKUP </a></li>
+        <li><a href=""> ABOUT </a></li>
+        <li><a href="logout.php"> LOG OUT </a></li>
+
+    </ul>
      <h2>Recalls</h2>
       <table>
         <tr>
@@ -30,6 +44,7 @@ $sArray = $_SESSION['payload'];
 	}
         ?>
       </table>
+</header>
 </body>
 </html>
 
