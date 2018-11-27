@@ -64,7 +64,7 @@ function apiCall($username, $make, $model, $year){
 			echo ("Recall Exists already.");
 			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
 			$result = mysqli_query($sqlcon, $recallInfo);
-			$rArray[$x] = mysqli_fetch_assoc($result);
+			#$rArray[$x] = mysqli_fetch_assoc($result);
                 	continue;	
 
         	}
@@ -75,13 +75,19 @@ function apiCall($username, $make, $model, $year){
 			($r = mysqli_query($sqlcon, $storeData)) or die(mysqli_error($sqlcon));
 			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
                         $result = mysqli_query($sqlcon, $recallInfo);
-                        $rArray[$x] = mysqli_fetch_assoc($result);
+                        #$rArray[$x] = mysqli_fetch_assoc($result);
 			continue;	
         	}
 	}
-
 	
-	var_dump($rArray);
+	$getData = ("select * from recallTable where username = '$username'");
+	$result = mysqli_query($sqlcon, $getData);
+	while($row = mysqli_fetch_assoc($result))
+        {
+                $rArray[] = $row;
+        }
+	
+	#var_dump($rArray);
 	return $rArray;
 }
 

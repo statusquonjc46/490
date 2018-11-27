@@ -28,9 +28,14 @@ $response = $client->send_request($request);
 
 echo "client received response: ".PHP_EOL;
 $payload = json_encode($response);
-echo $payload;
+#echo $payload;
 echo "\n\n";
 
+$_SESSION['payload'] = $payload;
+
 echo $argv[1]." END".PHP_EOL;
+
+header('Location: /results.php');
+exit();
 ?>
 
