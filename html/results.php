@@ -3,13 +3,7 @@ session_start();
 session_regenerate_id();
 $_SESSION['username'];
 $_SESSION['payload'];
-$rArray = $_SESSION['payload'];
-echo $rArray;
-foreach($rArray as $sArray)
-        {
-                echo "<tr><td>" . $sArray['make'] . "</td><td>" . $sArray['model'] . "</td><td>" . $sArray['modelyear'] . "</td><td>" . $sArray['manufacturer'] . "</td><td>" . $sArray['nhtsanumber'] . "</td><td>" . $sArray['date'] . "</td><td>" . $sArray['summary'] . "</td><td>" . $sArray['notes'] . "</td></tr>";
-        }
-
+$sArray = $_SESSION['payload'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,10 +23,10 @@ foreach($rArray as $sArray)
                 <th>Notes</th>
         </tr>
         <?php
-       # while($row = $sArray)
-	foreach($rArray as $sArray)
+	$c = count($sArray, 0);
+	for($x = 0; $x < $c; $x++)
 	{
-                echo "<tr><td>" . $sArray['make'] . "</td><td>" . $sArray['model'] . "</td><td>" . $sArray['modelyear'] . "</td><td>" . $sArray['manufacturer'] . "</td><td>" . $sArray['nhtsanumber'] . "</td><td>" . $sArray['date'] . "</td><td>" . $sArray['summary'] . "</td><td>" . $sArray['notes'] . "</td></tr>";
+                echo "<tr><td>" . $sArray[$x]['make'] . "</td><td>" . $sArray[$x]['model'] . "</td><td>" . $sArray[$x]['modelyear'] . "</td><td>" . $sArray[$x]['manufacturer'] . "</td><td>" . $sArray[$x]['nhtsanumber'] . "</td><td>" . $sArray[$x]['date'] . "</td><td>" . $sArray[$x]['summary'] . "</td><td>" . $sArray[$x]['notes'] . "</td></tr>";
 	}
         ?>
       </table>

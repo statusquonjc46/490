@@ -27,8 +27,9 @@ $response = $client->send_request($request);
 //$response = $client->publish($request);
 
 echo "client received response: ".PHP_EOL;
-$payload = json_encode($response);
-#echo $payload;
+#$payload = json_encode($response);
+$payload = $response;
+
 echo "\n\n";
 
 $_SESSION['payload'] = $payload;
