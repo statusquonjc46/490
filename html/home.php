@@ -3,7 +3,8 @@
 session_start();
 session_regenerate_id();
 $sid = session_id();
-echo $_SESSION['username'];
+$_SESSION['username'];
+$upUser = strtoupper($_SESSION['username']);
 ?>
 
 <html>
@@ -16,14 +17,17 @@ echo $_SESSION['username'];
     <header>
         
     <div class="row">
-        <div class="logo">
+	<div class="logo">
         <img src="logo.png"
         </div>
             
     <ul class="main-nav">    
-        <li class="active"><a href=""> HOME </a></li>
+        <li class="active"><a href="home.php"> HOME </a></li>
         <li><a href="service.php"> RECALL LOOKUP </a></li>
-        <li><a href=""> ABOUT </a></li>
+	<li><a href=""> ABOUT </a></li>
+	<?php
+	echo "<li><a href='apiClient.php'>" . $upUser . "</a></li>";
+	?>
         <li><a href="logout.php"> LOG OUT </a></li>
        
     </ul>    

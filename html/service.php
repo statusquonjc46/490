@@ -1,7 +1,8 @@
 <?php
 session_start();
 session_regenerate_id();
-echo $_SESSION['username'];
+$_SESSION['username'];
+$upUser = strtoupper($_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,8 +93,11 @@ form, .content {
     <ul class="main-nav">    
         <li><a href="home.php"> HOME </a></li>
         <li class="active"><a href="service.php"> RECALL LOOKUP </a></li>
-        <li><a href=""> ABOUT </a></li>
-        <li><a href="logout2.php"> LOG OUT </a></li>
+	<li><a href=""> ABOUT </a></li>
+	<?php
+        echo "<li><a href='apiClient.php'>" . $upUser . "</a></li>";
+        ?>
+        <li><a href="logout.php"> LOG OUT </a></li>
        
     </ul>    
         

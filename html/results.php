@@ -4,6 +4,7 @@ session_regenerate_id();
 $_SESSION['username'];
 $_SESSION['payload'];
 $sArray = $_SESSION['payload'];
+$upUser = strtoupper($_SESSION['username']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,9 +19,12 @@ $sArray = $_SESSION['payload'];
         <img src="logo.png"
 </div>
 <ul class="main-nav">
-        <li><a href=""> HOME </a></li>
-        <li class="active"><a href="service.php"> RECALL LOOKUP </a></li>
-        <li><a href=""> ABOUT </a></li>
+        <li><a href="home.php"> HOME </a></li>
+        <li><a href="service.php"> RECALL LOOKUP </a></li>
+	<li><a href=""> ABOUT </a></li>
+	`<?php
+        echo "<li class='active'><a href='apiClient.php'>" . $upUser . "</a></li>";
+        ?>
         <li><a href="logout.php"> LOG OUT </a></li>
 
     </ul>
