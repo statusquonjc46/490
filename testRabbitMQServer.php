@@ -40,7 +40,6 @@ function apiCall($username, $make, $model, $year){
 	$apiCode = json_decode($results, true);
 	
 	$c = count($apiCode['Results'], 0); //Checks the to see how many arrays exist
-	#var_dump($apiCode);
 	
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
 	for($x = 0; $x < $c; $x++)
@@ -64,9 +63,7 @@ function apiCall($username, $make, $model, $year){
 			echo ("Recall Exists already.");
 			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
 			$result = mysqli_query($sqlcon, $recallInfo);
-			#$rArray[$x] = mysqli_fetch_assoc($result);
                 	continue;	
-
         	}
         	else
 		{
@@ -75,7 +72,6 @@ function apiCall($username, $make, $model, $year){
 			($r = mysqli_query($sqlcon, $storeData)) or die(mysqli_error($sqlcon));
 			$recallInfo = ("select * from recallTable where username = '$username'and nhtsanumber = '$qCampNum'");
                         $result = mysqli_query($sqlcon, $recallInfo);
-                        #$rArray[$x] = mysqli_fetch_assoc($result);
 			continue;	
         	}
 	}
@@ -86,8 +82,7 @@ function apiCall($username, $make, $model, $year){
         {
                 $rArray[] = $row;
         }
-	
-	#var_dump($rArray);
+
 	return $rArray;
 }
 
