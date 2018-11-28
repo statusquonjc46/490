@@ -91,6 +91,32 @@ function apiCall($username, $make, $model, $year){
 	return $rArray;
 }
 
+function recallFixed($username, $fixed, $campNum)
+{
+	$rArray = array();
+
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+	if($fixed == 1)
+	{
+		$set = ("update recallTable set fixed='1' where username = '$username' and nhtsanumber = '$campNum'");
+		$query = mysqli_query($sqlcon, $set);
+	}
+	else
+	{
+		$set = ("update recallTable set fixed='0' where username = '$username' and nhtsanumber = '$campNum'");
+                $query = mysqli_query($sqlcon, $set);
+	}
+
+	$getData = ("select * from recallTable where username = '$username'");
+        $result = mysqli_query($sqlcon, $getData);
+        while($row = mysqli_fetch_assoc($result))
+        {
+                $rArray[] = $row;
+        }
+
+        return $rArray;
+}
+
 function recallDelete($username, $qCampNum)
 {
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
@@ -132,6 +158,8 @@ function requestProcessor($request)
 	    return doRegister($request['username'],$request['password']);
     case "api":
 	    return apiCall($request['username'],$request['make'],$request['model'],$request['year']);
+    case "fix":
+	    return recallFixed($request['username'],$request['box'],$request['cNum']);
     case "delete":
 	    return recallDelete($request['username'],$request['campnum']);
   }
