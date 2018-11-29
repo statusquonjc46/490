@@ -24,7 +24,7 @@ $upUser = strtoupper($_SESSION['username']);
     <ul class="main-nav">    
         <li class="active"><a href="home.php"> HOME </a></li>
         <li><a href="service.php"> RECALL LOOKUP </a></li>
-	<li><a href=""> ABOUT </a></li>
+	<li><a href="search.php"> SEARCH FOR MECHANIC </a></li>
 	<?php
 	echo "<li><a href='apiClient.php'>" . $upUser . "</a></li>";
 	?>

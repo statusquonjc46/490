@@ -3,14 +3,18 @@ session_start();
 session_regenerate_id();
 $_SESSION['username'];
 $upUser = strtoupper($_SESSION['username']);
+if(isset($_POST['submit']))
+{
+	header('Location:https://www.google.com/maps/search/?api=1&query=mechanic+' . $_POST['city'] .'+' . $_POST['state']);
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RECALL LOOKUP </title>
+    <title>Search</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <style>
-    
+
     * {
   margin: 0px;
   padding: 0px;
@@ -64,13 +68,13 @@ form, .content {
   border-radius: 5px;
 }
 .error {
-  width: 92%; 
-  margin: 0px auto; 
-  padding: 10px; 
-  border: 1px solid #a94442; 
-  color: #a94442; 
-  background: #f2dede; 
-  border-radius: 5px; 
+  width: 92%;
+  margin: 0px auto;
+  padding: 10px;
+  border: 1px solid #a94442;
+  color: #a94442;
+  background: #f2dede;
+  border-radius: 5px;
   text-align: left;
 }
 .success {
@@ -80,53 +84,51 @@ form, .content {
   margin-bottom: 20px;
 }
     </style>
-</head> 
+</head>
 <body>
     <header>
-        
+
     <div class="row">
         <div class="logo">
         <img src="logo.png"
              </div>
-        
-            
-    <ul class="main-nav">    
+
+
+    <ul class="main-nav">
         <li><a href="home.php"> HOME </a></li>
-        <li class="active"><a href="service.php"> RECALL LOOKUP </a></li>
-	<li><a href="search.php"> SEARCH FOR MECHANIC </a></li>
-	<?php
+        <li><a href="service.php"> RECALL LOOKUP </a></li>
+        <li class="active"><a href="search.php"> SEARCH FOR MECHANIC </a></li>
+        <?php
         echo "<li><a href='apiClient.php'>" . $upUser . "</a></li>";
         ?>
         <li><a href="logout.php"> LOG OUT </a></li>
-       
-    </ul>    
-        
-    </div>
-        
-    <div class="hero">
-    <h1>Please enter your car information below</h1>
-    <form id='recall' action='apiClient.php' method='get' accept-charset='UTF-8'>
-        
-       <div class="input-group"> 
-        <input type='hidden' name='submitted' id='submitted' value='1'/>
-           <label for='make'> Make of Vehicle:</label>
-        </div>
-        <div class="input-group">
-        <input type='text' name='make' id='make' maxlength="50"/>
-            <label for='model'> Model of Vehicle:</label></div>
-        <div class="input-group">
-        <input type='text' name='model' id='model' maxlength="50"/>
-            <label for='year'> Year of Vehicle:</label></div>
-        <div class="input-group">
-        <input type='text' name='year' id='year' maxlength="50"/>
-            <input type='submit' name='submit' value='submit'/></div>
-        
-     </form>
-    
-    </div>
-        </div>
-    </header>
 
-        
-</body>    
+    </ul>
+
+    </div>
+
+    <div class="hero">
+    <h1>Enter your city and state to search for mechanics in your area.</h1>
+    <form id='recall' target='_blank' action='' method='post' accept-charset='UTF-8'>
+
+       <div class="input-group">
+        <input type='hidden' name='submitted' id='submitted' value='1'/>
+           <label for='city'> City:</label>
+        </div>
+        <div class="input-group">
+        <input type='text' name='city' id='city' maxlength="50"/>
+            <label for='state'> State:</label></div>
+        <div class="input-group">
+        <input type='text' name='state' id='state' maxlength="50"/>
+            <input type='submit' name='submit' value='submit'/></div>
+
+     </form>
+    </div>
+        </div>
+                                                                                87,1          94%
+</header>
+
+
+</body>
 </html>
+
