@@ -112,26 +112,20 @@ function recallFixed($username, $fixed, $campNum)
         return $rArray;
 }
 
-function recallDelete($username, $qCampNum)
+function recallDelete($username, $campNum)
 {
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
-        $query = "delete from recallTable where username = '$username'and nhtsanumber = '$qCampNum'";
+        $query = "delete from recallTable where username = '$username'and nhtsanumber = '$campNum'";
 	$delete = mysqli_query($sqlcon, $query);
 
-	$dQuery = "select username and nhtsanumber from recallTable where username = '$username' and nhtsanumber = '$qCampNum'";
-	$dSelect = mysqli_query($sqlcon, $dQuery);
-	$check = mysqli_num_rows($dSelect);
-	if($check != 0)
-	{
-		echo "Deletion failed";
-		return 0;
-	}
-	else
-	{
-		echo "Deletion succesful";
-		return 1;
-	}
+	$getData = ("select * from recallTable where username = '$username'");
+        $result = mysqli_query($sqlcon, $getData);
+        while($row = mysqli_fetch_assoc($result))
+        {
+                $rArray[] = $row;
+        }
 
+        return $rArray;
 }
 
 
@@ -156,7 +150,7 @@ function requestProcessor($request)
     case "fix":
 	    return recallFixed($request['username'],$request['box'],$request['cNum']);
     case "delete":
-	    return recallDelete($request['username'],$request['campnum']);
+	    return recallDelete($request['username'],$request['cNum']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
