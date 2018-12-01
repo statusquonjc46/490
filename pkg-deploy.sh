@@ -1,7 +1,7 @@
 #!/bin/bash
-#this pushes packages out
-tar -cvf /home/njc46/490/490/html.tar /home/njc46/490/490/html
-scp -r /home/njc46/490/490/html.tar test1@192.168.2.194:/home/njc46/
-#this pulls packages. Period after html pulls all the files within that dir.
-#scp -r test1@192.168.2.2:/home/njc46/html.tar /home/njc46
-#tar -xvf /home/njc46/html.tar
+#this pushes packages out and creates a tar places it on desktop and pushes it from desktop.
+tar -cvf ~/Desktop/html.tar /home/njc46/490/490/html
+scp -r ~/Desktop/html.tar test1@192.168.2.194:~/
+#this pulls package and then untars it to git/490
+#scp -r test1@192.168.2.2:~/html.tar ~/git/490
+#tar -xvf ~/git/490/html.tar
