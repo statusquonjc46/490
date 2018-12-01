@@ -105,8 +105,8 @@ form, .content {
         
     <div class="hero">
     <h1>Please enter your car information below</h1>
-    <form id='recall' action='apiClient.php' method='get' accept-charset='UTF-8'>
-        
+    <form id='recall' action='clients.php' method='get' accept-charset='UTF-8'>
+       <input type='hidden' name='api' value='api'> 
        <div class="input-group"> 
         <input type='hidden' name='submitted' id='submitted' value='1'/>
            <label for='make'> Make of Vehicle:</label>

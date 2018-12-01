@@ -9,8 +9,9 @@
   	<h2>Register</h2>
   </div>
 	
-  <form id='register' action="registerClient.php" method="get">
-  	<div class="input-group">
+  <form id='register' action="clients.php" method="get">
+  	<input type='hidden' name='register' value='register'>
+	<div class="input-group">
   	  <label>Username</label>
   	 <input type='text' name='username' id='username' maxlength="50" placeholder="Enter Username" required autofocus autocomplete=on />
   	</div>

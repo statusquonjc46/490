@@ -11,9 +11,9 @@ session_start();
     <h1>Login</h1>
     </div>
 
-        <form id='login' action='/loggingin.php' method='get' accept-charset='UTF-8'>
+        <form id='login' action='/clients.php' method='get' accept-charset='UTF-8'>
             <div class="input-group">
-        
+	<input type='hidden' name='login' value='login'>        
         <input type='hidden' name='submitted' id='submitted' value='1'/>
             <label for='username'> Username:</label>
 	<input type='text' name='username' id='username' maxlength="50" placeholder="Enter Username" required autofocus autocomplete=on />

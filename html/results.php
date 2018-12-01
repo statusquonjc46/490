@@ -45,12 +45,12 @@ $upUser = strtoupper($_SESSION['username']);
 	for($x = 0; $x < $c; $x++)
 	{
 		echo "<tr><td>" . $sArray[$x]['make'] . "</td><td>" . $sArray[$x]['model'] . "</td><td>" . $sArray[$x]['modelyear'] . "</td><td>" . $sArray[$x]['manufacturer'] . "</td><td>" . $sArray[$x]['nhtsanumber'] . "</td><td>" . $sArray[$x]['summary'] . "</td><td>";
-		echo "<form id='fixed' action='fixedClient.php' method='post'><input type='hidden' name='cNum' value=" . $sArray[$x]['nhtsanumber']. "><input type='hidden' name='box' value='0'><input type='checkbox' name='box' value='1'";
+		echo "<form id='fixed' action='clients.php' method='post'><input type='hidden' name='cNum' value=" . $sArray[$x]['nhtsanumber']. "><input type='hidden' name='fix' value='fix'><input type='hidden' name='box' value='0'><input type='checkbox' name='box' value='1'";
 		if($sArray[$x]['fixed'] == 1){ 
 			echo "checked='checked'";
 		}	
 		echo "><input type='submit' value='Submit'></form></td>";
-		echo "<td><form id='delete' action='deleteClient.php' method='post'><input type='hidden' name='cNum' value=" . $sArray[$x]['nhtsanumber']. "><input type='submit' value='Delete'></form></td></tr>";
+		echo "<td><form id='delete' action='clients.php' method='post'><input type='hidden' name='delete' value='delete'><input type='hidden' name='cNum' value=" . $sArray[$x]['nhtsanumber']. "><input type='submit' value='Delete'></form></td></tr>";
 	}
         ?>
       </table>
