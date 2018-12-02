@@ -44,8 +44,6 @@ $upUser = strtoupper($_SESSION['username']);
     </div>
         </div>
     </header>
-
-
-        
+  
 </body>    
 </html>
