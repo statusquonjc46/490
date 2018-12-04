@@ -4,6 +4,7 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('login.php.inc');
+require_once('emailer.php');
 
 function doLogin($username,$password)
 {
@@ -143,6 +144,16 @@ function recallEmail($username, $make, $model, $year, $opt)
         	{
                 	$set = ("insert into optEmail (username, make, model, year, opt) values ('$username','$make','$model','$year','$opt')");
 			$query = mysqli_query($sqlcon, $set);
+			$get = ("select email from users where username='$username'");
+			$query = mysqli_query($sqlcon, $get);
+			while($row=mysqli_fetch_assoc($query))
+			{
+        			$selection[] = $row;
+			}
+			$address = $selection[0]['email'];
+			$email = new emailer;
+			$email->welcome_email($username, $address, $make, $model, $year);
+
         	}
         	else
         	{
