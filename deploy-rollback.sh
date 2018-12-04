@@ -1,62 +1,14 @@
-
 #!/bin/bash
 
-TARGET=example.com
-TARGET_BASE=/var/www/p
-TARGET_ARCHIVE=$TARGET_BASE/analyse.tgz
-TARGET_LOCATION=$TARGET_BASE/analyse
+#scp the rollback package to destination
 
-case "$1" in
- deploy)
-  echo "building"
-  yeoman build
-  if [ ! -d dist ];
-  then
-   echo "yeoman didnt build"
-   exit 1
-  fi
-  cd dist
-  tar -czf ../dist.tgz *
-  cd ..
 
-  echo "backing up"
-  ssh $TARGET << EOF
-   if [ -f $TARGET_ARCHIVE ];
-   then
-    mv $TARGET_ARCHIVE $TARGET_ARCHIVE.1
-   fi
-EOF
+cd /var/temp
 
-  echo "deploying"
-  scp dist.tgz $TARGET:$TARGET_ARCHIVE
+# $1 is filename
 
-  ssh $TARGET << EOF
-   echo "cleaning old deployment"
-   rm -rf $TARGET_LOCATION/*
+#delete contents first
+ssh karan@192.168.1.6 'rm -rf *'
 
-   echo "extracting new build"
-
-   if [ -f $TARGET_LOCATION ];
-   then
-    mkdir $TARGET_LOCATION
-   fi
-   tar xfz $TARGET_ARCHIVE -C $TARGET_LOCATION
-EOF
-
-  ;;
- rollback)
-  echo "rolling back"
-
-  ssh $TARGET << EOF
-   rm -rf $TARGET_LOCATION/*
-
-   mv $TARGET_ARCHIVE.1 $TARGET_ARCHIVE
-   tar xfz $TARGET_ARCHIVE -C $TARGET_LOCATION
-
-EOF
-  ;;
- *)
-  echo "usage: $0 [deploy] [rollback]"
-  ;;
-esac
-exit 0
+#send new rollback version
+pv $1 | ssh part@192.168.1.6 'cat | tar xz --strip-components=1 -C *'
