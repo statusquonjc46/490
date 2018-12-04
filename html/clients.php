@@ -53,6 +53,7 @@ if($_GET["register"]){
 	$request['type'] = "register";
 	$request['username'] = $_GET["username"];
 	$request['password'] = $_GET["password"];
+	$request['email'] = $_GET["email"];
 	$response = $client->send_request($request);
 	//$response = $client->publish($request);
 
@@ -82,6 +83,10 @@ if($_GET["api"]){
 	$request['make'] = $_GET["make"];
 	$request['model'] = $_GET["model"];
 	$request['year'] = $_GET["year"];
+	if($_GET["opt"]){
+		$request['type2'] = "email";
+		$request['opt'] = '1';
+	}
 	$response = $client->send_request($request);
 
 //$response = $client->publish($request);

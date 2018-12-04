@@ -120,7 +120,8 @@ form, .content {
         <div class="input-group">
         <input type='text' name='year' id='year' maxlength="50"/>
             <input type='submit' name='submit' value='submit'/></div>
-        
+	<input id='opt' type='checkbox' name='opt' value='opt'>
+	<label for='opt'>Opt-in for recall updates via email?</label>	
      </form>
     
     </div>

@@ -14,7 +14,7 @@ function doLogin($username,$password)
     //return false if not valid
 }
 
-function doRegister($username, $password)
+function doRegister($username, $password, $email)
 {
 	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
 	$query = "select username from users where username = '$username'";
@@ -25,7 +25,7 @@ function doRegister($username, $password)
 		return 0;
 	}
 	else{
-		$d="insert into users(username, password) values('$username','$password')";
+		$d="insert into users(username, password, email) values('$username','$password','$email')";
 		($t = mysqli_query($sqlcon, $d)) or die (mysqli_error($sqlcon));
 		return 1;
 	}
@@ -128,6 +128,29 @@ function recallDelete($username, $campNum)
         return $rArray;
 }
 
+function recallEmail($username, $make, $model, $year, $opt)
+{
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "test");
+	
+	$recallExist = ("select username, make, model, year from optEmail where username = '$username' and make = '$make' and model = '$model' and year = '$year'");
+        $existQ = mysqli_query($sqlcon, $recallExist);
+        $check = mysqli_num_rows($existQ);
+	if($check!=0){
+		echo "already opted in";
+	}
+	else{	
+		if($opt == 1)
+        	{
+                	$set = ("insert into optEmail (username, make, model, year, opt) values ('$username','$make','$model','$year','$opt')");
+			$query = mysqli_query($sqlcon, $set);
+        	}
+        	else
+        	{
+                	$set = ("update optEmail set opt='0' where username = '$username'");
+			$query = mysqli_query($sqlcon, $set);
+        	}
+	}
+}
 
 function requestProcessor($request)
 {
@@ -141,18 +164,22 @@ function requestProcessor($request)
   {
     case "login":
      	    return doLogin($request['username'],$request['password']);
-    case "validate_session":
-	    return doValidate($request['sessionId']);
+    case "email":
+	    return recallEmail($request['username'],$request['make'],$request['model'],$request['year'],$request['opt']);
     case "register":
-	    return doRegister($request['username'],$request['password']);
+	    return doRegister($request['username'],$request['password'],$request['email']);
     case "api":
+	    if($request['type2']=='email'){
+	    	recallEmail($request['username'],$request['make'],$request['model'],$request['year'],$request['opt']);
+	    }	
 	    return apiCall($request['username'],$request['make'],$request['model'],$request['year']);
     case "fix":
 	    return recallFixed($request['username'],$request['box'],$request['cNum']);
     case "delete":
 	    return recallDelete($request['username'],$request['cNum']);
   }
-  return array("returnCode" => '0', 'message'=>"Server received request and processed");
+  
+   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
 $server = new rabbitMQServer("testRabbitMQ.ini","testServer");
