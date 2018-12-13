@@ -1,0 +1,12 @@
+[Unit]
+Description=RabbitMQErrorServer Service
+After=network-online.target rabbitmq-server.service mysqld.service NetworkManager.service networking.service apache2.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/home/nick/git/490/errorServer.php
+
+[Install]
+WantedBy=multi-user.target
