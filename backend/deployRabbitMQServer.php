@@ -39,6 +39,21 @@ function qa($ver,$ser,$num,$location)
 	}
 }
 
+function prod($ver,$ser,$location)
+{
+        if($ser==1)
+        {
+                if($location==0){
+                        shell_exec("/home/test1/git/490/deployment/pull-front-prod.sh '".$ver."'");
+
+                }
+                elseif($location==1){
+                        shell_exec("/home/test1/git/490/deployment/pull-back-prod.sh '".$ver."'");
+
+                }
+	}
+}
+
 function allVersion($location)
 {
 	if($location==0){
@@ -56,6 +71,32 @@ function allVersion($location)
 	elseif($location==1){
 		$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
                 $query = ("select version from databaseServer");
+                $result = mysqli_query($sqlcon, $query);
+                while($row = mysqli_fetch_assoc($result))
+                {
+                        $rArray[] = $row;
+                }
+
+                return $rArray;
+	}
+}
+
+function workingVersion($location)
+{
+	if($location==0){
+                $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                $query = ("select version from webServer where working='1'");
+                $result = mysqli_query($sqlcon, $query);
+                while($row = mysqli_fetch_assoc($result))
+                {
+                        $rArray[] = $row;
+                }
+
+                return $rArray;
+        }
+        elseif($location==1){
+                $sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                $query = ("select version from databaseServer where working='1'");
                 $result = mysqli_query($sqlcon, $query);
                 while($row = mysqli_fetch_assoc($result))
                 {
@@ -119,6 +160,10 @@ function requestProcessor($request)
 	    return devPush($request['version'],$request['location']);
     case "all":
 	    return allVersion($request['location']);
+    case "work":
+	    return workingVersion($request['location']);
+    case "prod":
+	    return prod($request['version'],$request['service'],$request['location']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
