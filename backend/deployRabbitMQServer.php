@@ -13,10 +13,10 @@ function qa($msg,$num)
 function devPush($ver,$location)
 {
 	if($location==0){
-		shell_exec("/home/test1/git/490/deployment/pkg-deploy-frontend.sh '".$ver."'");
+		shell_exec("/home/test1/git/490/deployment/pull-front.sh '".$ver."'");
 	}
 	elseif($location==1){
-		shell_exec("/home/test1/git/490/deployment/pkg-deploy-backend.sh '".$ver."'");
+		shell_exec("/home/test1/git/490/deployment/pull-back.sh '".$ver."'");
 	}
 }
 
