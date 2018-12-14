@@ -30,11 +30,11 @@ function qa($ver,$ser,$num,$location)
 	{
 		if($location==0){
 			shell_exec("/home/test1/git/490/deployment/pull-front-QA.sh '".$ver."'");
-			return 0;
+			
         	}
         	elseif($location==1){
 			shell_exec("/home/test1/git/490/deployment/pull-back-QA.sh '".$ver."'");
-			return 1;
+			
         	}
 	}
 }
