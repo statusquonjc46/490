@@ -4,9 +4,8 @@ After=network-online.target rabbitmq-server.service mysqld.service NetworkManage
 
 [Service]
 Type=simple
-Restart=always
-RestartSec=10
-ExecStart=/home/nick/git/490/testRabbitMQServer.php
+ExecStart=/home/test1/git/490/backend/testRabbitMQServer.php
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
