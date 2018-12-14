@@ -8,7 +8,9 @@ $upUser = strtoupper($_SESSION['username']);
 ?>
 
 <html>
-    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <head>
     <title>IT 490</title>
     <link href="style.css" rel="stylesheet" type="text/css">

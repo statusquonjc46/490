@@ -147,6 +147,24 @@ header
 }
 
 
+#headline {
+  padding: 0.8em;
+  color: white;
+  font-family: Roboto, sans-serif;
+  background-image: url(backgroundimage.jpg);
+  background-size: cover;
+}
+
+
+@media screen and (min-width: 600px) {
+
+          .container {
+            margin: auto;
+            max-width: 800px;
+          }
+}
+
+
 
 
 
