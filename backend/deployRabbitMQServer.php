@@ -10,6 +10,16 @@ function qa($msg,$num)
 	echo $num;
 }
 
+function devPush($ver,$location)
+{
+	if($location==0){
+		shell_exec("/home/test1/git/490/deployment/pkg-deploy-frontend.sh '".$ver."'");
+	}
+	elseif($location==1){
+		shell_exec("/home/test1/git/490/deployment/pkg-deploy-backend.sh '".$ver."'");
+	}
+}
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -22,8 +32,8 @@ function requestProcessor($request)
   {
     case "qa":
 	    return qa($request['version'],$request['working']);
-    case "":
-	    return ;
+    case "dev":
+	    return function devPush($request['version'],$request['location']);
     case "":
 	    return ;
   }
