@@ -25,16 +25,17 @@ while($check==true){
 		$check =false;
 		echo "Front end or back end?(front or back) ";
 		$loc = trim(fgets(STDIN));
+		$end = true;
 		while($end==true){
 			if($loc=='front'){
 				$end = false;
 				$num = 0;
-				shell_exec("/home/njc46/git/490/deployment/tar-front.sh '".$ver."'");
+				shell_exec("/home/test1/git/490/deployment/tar-front.sh '".$ver."'");
 			}
 			elseif($loc=='back'){
 				$end = false;
 				$num = 1;
-				shell_exec("/home/njc46/git/490/deployment/tar-back.sh '".$ver."'");
+				shell_exec("/home/test1/git/490/deployment/tar-back.sh '".$ver."'");
 			}
 		}
         }
