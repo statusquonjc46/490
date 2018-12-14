@@ -10,24 +10,29 @@ function qa($ver,$ser,$num,$location)
 	{
 		if($location==0)
 		{
-			$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
-                	$query = ("update webServer set working='1' where version='$ver'");
-			$update = mysqli_query($sqlcon, $query);
+			if($num==1){
+				$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                        	$query = ("update webServer set working='1' where version='$ver'");
+                        	$update = mysqli_query($sqlcon, $query);
+			}
+			
 		}
 		elseif($location==1)
 		{
-			$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
-                        $query = ("update databaseServer set working='1' where version='$ver'");
-			$update = mysqli_query($sqlcon, $query);
+			if($num==1){
+				$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                        	$query = ("update databaseServer set working='1' where version='$ver'");
+                        	$update = mysqli_query($sqlcon, $query);
+			}
 		}
 	}
 	elseif($ser==1)
 	{
 		if($location==0){
-                	shell_exec("/home/test1/git/490/deployment/pull-front-qa.sh '".$ver."'");
+                	shell_exec("/home/test1/git/490/deployment/pull-front-QA.sh '".$ver."'");
         	}
         	elseif($location==1){
-                	shell_exec("/home/test1/git/490/deployment/pull-back-qa.sh '".$ver."'");
+                	shell_exec("/home/test1/git/490/deployment/pull-back-QA.sh '".$ver."'");
         	}
 	}
 }
@@ -62,16 +67,36 @@ function allVersion($location)
 function devPush($ver,$location)
 {
 	if($location==0){
-		shell_exec("/home/test1/git/490/deployment/pull-front.sh '".$ver."'");
-		$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
-                $query = ("insert into webServer(version) values('$ver')");
-                $insert = mysqli_query($sqlcon, $query);
+		$verExist = "select version from webServer where version = '$ver'";
+                $exist = mysqli_query($sqlcon, $verExist);
+		$check = mysqli_num_rows($exist);
+		if($check!=0){
+			$aExists = "Version already exists";
+			return $aExists;
+		}
+		else{
+			shell_exec("/home/test1/git/490/deployment/pull-front.sh '".$ver."'");
+			$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                	$query = ("insert into webServer(version) values('$ver')");
+			$insert = mysqli_query($sqlcon, $query);
+			return 1;
+		}
 	}
 	elseif($location==1){
-		shell_exec("/home/test1/git/490/deployment/pull-back.sh '".$ver."'");
-		$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
-                $query = ("insert into databaseServer(version) values('$ver')");
-                $insert = mysqli_query($sqlcon, $query);
+		$verExist = "select version from databaseServer where version = '$ver'";
+                $exist = mysqli_query($sqlcon, $verExist);
+                $check = mysqli_num_rows($exist);
+		if($check!=0){
+			$aExists = "Version already exists";
+                        return $aExists;
+                }
+		else{
+			shell_exec("/home/test1/git/490/deployment/pull-back.sh '".$ver."'");
+			$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
+                	$query = ("insert into databaseServer(version) values('$ver')");
+			$insert = mysqli_query($sqlcon, $query);
+			return 1;
+		}
 	}
 }
 
