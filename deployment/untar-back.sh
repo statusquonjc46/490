@@ -1,3 +1,3 @@
 #!/bin/bash
 
-tar -C ~/git/490 -xvf ~/git/backend$1.tar
+tar -C ~/git/ -xvf backend$1.tar

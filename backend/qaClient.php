@@ -36,7 +36,7 @@ while($check==true){
                         $ver = trim(fgets(STDIN));
                 	$num = 0;
 		}
-
+		$end = true;
 		while($end==true){
 			echo "Front end or back end?(front or back) ";
                 	$loc = trim(fgets(STDIN));
@@ -53,6 +53,9 @@ while($check==true){
 	elseif($dir='pull'){
 		$check = false;
 		$ser = 1;
+		$end = true;
+		$num = 0;
+		$untar = 0;
 		while($end==true){
 			echo "Front end or back end?(front or back) ";
                 	$loc = trim(fgets(STDIN));
@@ -84,16 +87,19 @@ $request['version'] = $ver;
 $request['service'] = $ser;
 $request['working'] = $num;
 $request['location'] = $eNum;
-$response = $client->send_request($request);
+//$response = $client->send_request($request);
 //$response = $client->publish($request);
-if($reponse==0){
-	shell_exec("/home/test1/git/490/deployment/untar-front.sh '".$ver."'");
-}
-elseif($reponse==1){
-	shell_exec("/home/test1/git/490/deployment/untar-back.sh '".$ver."'");
+echo "hello";
+if($untar==0){
+	if($eNum==0){
+		shell_exec("/home/test1/git/490/deployment/untar-front.sh '".$ver."'");
+	}
+	elseif($eNum==1){
+		shell_exec("/home/test1/git/490/deployment/untar-back.sh '".$ver."'");
+	}
 }
 echo "client received response: ".PHP_EOL;
-print_r($response);
+//print_r($response);
 echo "\n\n";
 
 echo $argv[0]." END".PHP_EOL;
