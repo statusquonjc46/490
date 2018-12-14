@@ -3,9 +3,9 @@ Description=RabbitMQServer Service
 After=network-online.target rabbitmq-server.service mysqld.service NetworkManager.service networking.service apache2.service
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=/home/test1/git/490/backend/testRabbitMQServer.php
-Restart=on-failure
+ExecStart=/home/test1/git/490/backend/errorServer.php
 
 [Install]
 WantedBy=multi-user.target
