@@ -35,6 +35,18 @@ body {
   border-radius: 10px 10px 0px 0px;
   padding: 20px;
 }
+
+h2
+{
+    color: white;
+    text-transform: uppercase;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 275px;
+
+}
+
+
 form, .content {
   width: 30%;
   margin: 0px auto;
@@ -108,7 +120,7 @@ form, .content {
     </div>
 
     <div class="hero">
-    <h1>Enter your city and state to search for mechanics in your area.</h1>
+    <h2>Enter your city and state to search for mechanics in your area.</h2>
     <form id='recall' target='_blank' action='' method='post' accept-charset='UTF-8'>
 
        <div class="input-group">
