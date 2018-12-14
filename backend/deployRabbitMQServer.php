@@ -4,9 +4,10 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-function 
+function qa($msg,$num) 
 {
-
+	echo $msg;
+	echo $num;
 }
 
 function requestProcessor($request)
@@ -19,13 +20,17 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "qa":
+	    return qa($request['version'],$request['working']);
     case "":
-      return ;
+	    return ;
+    case "":
+	    return ;
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
-$server = new rabbitMQServer("errorRabbitMQ.ini","testServer");
+$server = new rabbitMQServer("deployRabbit.ini","testServer");
 
 
 $server->process_requests('requestProcessor');

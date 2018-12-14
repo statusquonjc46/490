@@ -155,11 +155,6 @@ function recallEmail($username, $make, $model, $year, $opt)
 			$email->welcome_email($username, $address, $make, $model, $year);
 
         	}
-        	else
-        	{
-                	$set = ("update optEmail set opt='0' where username = '$username'");
-			$query = mysqli_query($sqlcon, $set);
-        	}
 	}
 }
 
