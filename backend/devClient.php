@@ -27,9 +27,11 @@ while($check==true){
 		$loc = trim(fgets(STDIN));
 		if($loc=='front'){
 			$num = 0;
+			shell_exec("/home/test1/git/490/deployment/tar-front.sh '".$ver."'");
 		}
 		elseif($loc=='back'){
 			$num = 1;
+			shell_exec("/home/test1/git/490/deployment/tar-back.sh '".$ver."'");
 		}
         }
         elseif($work=='no'){
