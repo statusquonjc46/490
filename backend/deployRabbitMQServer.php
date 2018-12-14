@@ -66,8 +66,9 @@ function allVersion($location)
 
 function devPush($ver,$location)
 {
+	$sqlcon = mysqli_connect("localhost", "testuser", "Letmein123!", "deployment");
 	if($location==0){
-		$verExist = "select version from webServer where version = '$ver'";
+		$verExist = ("select version from webServer where version = '$ver'");
                 $exist = mysqli_query($sqlcon, $verExist);
 		$check = mysqli_num_rows($exist);
 		if($check!=0){
@@ -83,9 +84,9 @@ function devPush($ver,$location)
 		}
 	}
 	elseif($location==1){
-		$verExist = "select version from databaseServer where version = '$ver'";
+		$verExist = ("select version from databaseServer where version = '$ver'");
                 $exist = mysqli_query($sqlcon, $verExist);
-                $check = mysqli_num_rows($exist);
+		$check = mysqli_num_rows($exist);
 		if($check!=0){
 			$aExists = "Version already exists";
                         return $aExists;
