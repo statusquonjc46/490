@@ -136,9 +136,7 @@ form, .content {
 
      </form>
     </div>
-        </div>
-                                                                                87,1          94%
-</header>
+        </div>                                                                          </header>
 
 
 </body>
