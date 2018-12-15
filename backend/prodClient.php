@@ -16,10 +16,10 @@ else
 $check=true;
 while($check==true){
 
-        echo "Pull directory?(pull) ";
+        echo "Pull directory?(pull)";
         $dir = trim(fgets(STDIN));
 
-	if($dir='pull'){
+	if($dir=='pull'){
 		$check = false;
 		$ser = 1;
 		$end = true;
@@ -47,26 +47,19 @@ while($check==true){
 		print_r($response);
 		echo "Enter version ";
 		$ver = trim(fgets(STDIN));
-        }
+	}
 }
 $request = array();
 $request['type'] = "prod";
 $request['version'] = $ver;
 $request['service'] = $ser;
 $request['location'] = $eNum;
-//$response = $client->send_request($request);
+$response = $client->send_request($request);
 //$response = $client->publish($request);
 echo "hello";
-if($untar==0){
-	if($eNum==0){
-		shell_exec("/home/test1/git/490/deployment/untar-front.sh '".$ver."'");
-	}
-	elseif($eNum==1){
-		shell_exec("/home/test1/git/490/deployment/untar-back.sh '".$ver."'");
-	}
-}
 echo "client received response: ".PHP_EOL;
 //print_r($response);
 echo "\n\n";
 
 echo $argv[0]." END".PHP_EOL;
+
