@@ -87,17 +87,9 @@ $request['version'] = $ver;
 $request['service'] = $ser;
 $request['working'] = $num;
 $request['location'] = $eNum;
-//$response = $client->send_request($request);
+$response = $client->send_request($request);
 //$response = $client->publish($request);
 echo "hello";
-if($untar==0){
-	if($eNum==0){
-		shell_exec("/home/test1/git/490/deployment/untar-front.sh '".$ver."'");
-	}
-	elseif($eNum==1){
-		shell_exec("/home/test1/git/490/deployment/untar-back.sh '".$ver."'");
-	}
-}
 echo "client received response: ".PHP_EOL;
 //print_r($response);
 echo "\n\n";
