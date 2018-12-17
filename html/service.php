@@ -101,9 +101,9 @@ form, .content {
        
     </ul>    
         
-    </div>
+    
         
-    <div class="hero">
+    
     <h1>Please enter your car information below</h1>
     <form id='recall' action='clients.php' method='get' accept-charset='UTF-8'>
        <input type='hidden' name='api' value='api'> 

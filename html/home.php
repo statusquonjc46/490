@@ -21,7 +21,7 @@ $upUser = strtoupper($_SESSION['username']);
     <div class="row">
 	<div class="logo">
         <img src="logo.png"
-        </div>
+    </div> 
             
     <ul class="main-nav">    
         <li class="active"><a href="home.php"> HOME </a></li>
@@ -34,17 +34,12 @@ $upUser = strtoupper($_SESSION['username']);
        
     </ul>    
         
-    </div>
         
-    <div class="hero">
-    <h1>Recall Car Service </h1>
-        
-    <div class="button">
-     
-    </div>    
+    
+    <h1>Recall Car Service </h1>    
             
-    </div>
-        </div>
+    
+     
     </header>
   
 </body>    

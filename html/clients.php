@@ -3,9 +3,9 @@ session_start();
 session_regenerate_id();
 $_SESSION['username'];
 
-require_once('/home/test1/git/490/path.inc');
-require_once('/home/test1/git/490/get_host_info.inc');
-require_once('/home/test1/git/490/rabbitMQLib.inc');
+require_once('/home/test1/git/490/backend/path.inc');
+require_once('/home/test1/git/490/backend/get_host_info.inc');
+require_once('/home/test1/git/490/backend/rabbitMQLib.inc');
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 if (isset($argv[1]))

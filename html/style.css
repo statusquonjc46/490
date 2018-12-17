@@ -14,6 +14,10 @@ padding: 15px;
 body
 {
     font-family: monospace;
+    font-size: 100%;
+}
+input[type="checkbox"] {
+    background: none;
 }
 .row
 {
@@ -43,7 +47,6 @@ body
     border: 1px solid white;
 }
 
-
 .main-nav li a
 {
     color: white;
@@ -61,7 +64,7 @@ body
     margin-top: 0px;
     
 }
-
+/*
 form, .content {
   width: 30%;
   margin: 0px auto;
@@ -70,6 +73,8 @@ form, .content {
   background: white;
   border-radius: 0px 0px 10px 10px;
 }
+*/
+/*
 .input-group {
   margin: 10px 0px 10px 0px;
 }
@@ -78,6 +83,7 @@ form, .content {
   text-align: left;
   margin: 3px;
 }
+
 .input-group input {
   height: 30px;
   width: 93%;
@@ -86,7 +92,7 @@ form, .content {
   border-radius: 5px;
   border: 1px solid gray;
 }
-
+*/
 
 h1
 {
@@ -95,7 +101,24 @@ h1
     font-size: 70px;
     text-align: center;
     margin-top: 275px;
-    
+    font: 1.125em;    
+}
+h2
+{
+    color: white;
+    text-transform: uppercase;
+    font-size: 48px;
+    text-align: center;
+    font: 1.125em;
+}
+h3
+{
+    color: white;
+    text-transform: uppercase;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 275px;
+    font: 1.125em;
 }
 header
 {
@@ -155,7 +178,7 @@ header
   background-size: cover;
 }
 
-
+/*
 @media screen and (min-width: 600px) {
 
           .container {
@@ -163,7 +186,7 @@ header
             max-width: 800px;
           }
 }
-
+*/
 
 
 

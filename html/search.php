@@ -117,10 +117,10 @@ form, .content {
 
     </ul>
 
-    </div>
+    
 
-    <div class="hero">
-    <h2>Enter your city and state to search for mechanics in your area.</h2>
+    
+    <h3>Enter your city and state to search for mechanics in your area.</h3>
     <form id='recall' target='_blank' action='' method='post' accept-charset='UTF-8'>
 
        <div class="input-group">
