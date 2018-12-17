@@ -1,0 +1,39 @@
+1) Master
+MASTER_HOST = 
+MASTER_USER = repl
+MASTER_PASSWORD = 1password1
+MASTER_LOG_FILE =
+MASTER_LOG_POS =
+
+sudo apt-get install mysql-server mysql-client
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+bind-address = [MASTER_HOST] Line 43
+server-id = 1 Line 84
+log_bin = /var/log/mysql/mysql.bin.log Line 85
+sudo service mysql restart
+sudo mysql -u root -p
+create user 'repl'@'%' identified by '1password1';
+grant replication slave on *.* to 'repl'@'%';
+exit
+sudo mysqldump -uroot --all-databases --master-data > masterdump.sql
+sudo grep CHANGE *sql | head -1
+sudo scp masterdump.sql [SLAVE_HOST]
+
+2) Slave
+SLAVE_HOST =
+sudo rm /var/lib/mysql/auto.cnf
+sudo service mysql restart
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+bind-address = [SLAVE_HOST] Line 43
+server-id = 2 Line 84
+sudo service mysql restart
+sudo mysql -u root -p
+CHANGE MASTER TO
+MASTER_HOST = '[MASTER_HOST',
+MASTER_USER = 'repl',
+MASTER_PASSWORD = '1password1';
+exit
+
+sudo mysql -u root -p 
+start slave;
+show slave status \G;
