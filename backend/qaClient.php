@@ -76,7 +76,10 @@ while($check==true){
 		//$response = $client->publish($request);
 		
 		echo "client received response: ".PHP_EOL;
-		print_r($response);
+		$c = count($response, 0);
+                for($x=0;$x<$c;$x++){
+                        echo "Available versions: ".$response[$x]['version'].PHP_EOL;
+                }
 		echo "Enter version ";
 		$ver = trim(fgets(STDIN));
         }
