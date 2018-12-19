@@ -3,7 +3,7 @@ Automobile Recall SaaS.
 
 A full stack SaaS for automobile recalls.
 
-Functionality we offer:
+Functionality we offer
 -Register an account, that holds all recalls for you vehicles.
 -Search the NHTSA database for recalls pertaining to make, model, and year of your vehicle.
 -Find mechanics in your area that can fix your recalls.
